@@ -1,12 +1,11 @@
 {
-  "homepage": "https://exiviuz.github.io/eat-n-split",
+  "homepage": "https://exiviuz.github.io/eat-and-split",
   "name": "tip-calculator",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "vite build && gh-pages -d dist",
     "dev": "vite --host",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
