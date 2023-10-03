@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import myImage from "./avatar.jpg";
+import { useState } from "react";
 
 const initialFriends = [
   {
@@ -119,9 +118,33 @@ function Friend({ friend, index, onSetSelect, selected }) {
 }
 
 function AddFriend({ setFriends }) {
+  function generateRandomName() {
+    const randomNames = [
+      "Alice",
+      "Bob",
+      "Charlie",
+      "David",
+      "Eva",
+      "Frank",
+      "Grace",
+      "Henry",
+      "Ivy",
+      "Jack",
+    ];
+    const randomIndex = Math.floor(Math.random() * randomNames.length);
+    return randomNames[randomIndex];
+  }
+
+  function generateAvatarUrl() {
+    const baseUrl = "https://xsgames.co/randomusers/avatar.php?g=pixel&name=";
+    const randomName = generateRandomName();
+    const encodedName = encodeURIComponent(randomName);
+    return baseUrl + encodedName;
+  }
+
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [friendName, setFriendName] = useState("");
-  const [friendImage, setFriendImage] = useState("");
+  const [friendImage, setFriendImage] = useState(generateAvatarUrl);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -136,7 +159,7 @@ function AddFriend({ setFriends }) {
 
     setFriends((prevFriends) => [...prevFriends, newFriend]);
     setFriendName("");
-    setFriendImage("");
+    setFriendImage(generateAvatarUrl);
   }
 
   return (
